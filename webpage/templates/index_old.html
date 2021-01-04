@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+        <title>Hello, world!</title>
+    </head>
+    <body>
+        <h1>Hello, world!  It's me :)</h1>
+
+        <form>
+            <div class="container">
+                <!-- Creates container with User Input field & button Predict -->
+                <div class="input-group mb-3">
+                    <input type="number" class="form-control" id="input" placeholder="Please enter the wind speed here..." aria-label="Wind Speed" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                    <button class="btn btn-success" type="button" id="predict_button">Predict</button>
+                    </div>
+                </div>
+
+                <!-- Creates container with Output field -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" >Predicted power</span>
+                    </div>
+                    <input type="number" id="output" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" readonly>
+                    
+                </div>
+                <input type="number" id="output_test" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" readonly>
+                <button type="button" class="btn btn-primary" id="test_button" onclick="buttonClicked()">Primary</button>
+            </div>
+        </form>
+
+        
+        <br/>
+        <div id="output2">output will go here</div>
+
+        <br/>
+        <br/>
+
+        <form action="/get-speed" method="POST">
+            <input type="number" name="wind">
+            <input type="submit" value="Go">
+        </form>
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    -->
+
+    <script>
+        $("#predict_button").click(function(e) {
+            e.preventDefault();
+            var speed=document.getElementById('input').value
+            console.log(speed)
+
+            $.getJSON("/get-speed", function(data) {
+                $('#output_test').val(data.value);
+            });
+
+            $.getJSON("/api/prediction", function(data) {
+                $('#output').val(data.value);
+            });
+        });
+
+        function buttonClicked(){
+            var speed=document.getElementById('input').value
+            document.getElementById('output2').innerText = speed
+        }
+    </script>
+    </body>
+</html>

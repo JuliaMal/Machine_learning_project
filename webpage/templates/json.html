@@ -30,23 +30,28 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type=text/javascript>
-      $(function() {
-        $('a#calculate').bind('click', function() {
-          $.getJSON("/numbers", {
-            a: $('input[name="a"]').val(),
-            // b: $('input[name="b"]').val() 
-          }, function(data) {
-            $("#result").text(data.result);
-          });
-          return false;
-        });
-      });
+            $(function() {
+              $('a#test').on('click', function(e) {
+                e.preventDefault()
+                $.getJSON('/api/normal',
+                    function(data) {
+                        $('#firstname').val(data.value);
+                });
+                return false;
+              });
+            });
     </script>
-    <h1>jQuery Example</h1>
-    <p><input type="text" size=5 name="a"> 
-       <!-- <input type=text size=5 name=b> = -->
-       <input type="text" name="power" id="resultid">
-       <span id="result">?</span>
-    <p><a href=# id=calculate>calculate server side</a>
+    
+    
+    //button
+    <div class='container'>
+        <h3>Test</h3>
+            <form>
+                <label for="firstname">First Name:</label> 
+                <input type="text" id="firstname" name="fname" placeholder="firstname">
+                <a href=# id=test><button class='btn btn-default'>Test</button></a>
+            </form>
+    
+    </div>
     </body>
 </html>

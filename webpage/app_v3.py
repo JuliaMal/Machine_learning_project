@@ -66,24 +66,26 @@ def predict_power():
 
     predicted_power = model_kr.predict([a])
     #bb = np.round(predicted_power)
-    pp = np.ndarray.round(predicted_power, 2)
-    pp2 = np.around(predicted_power, 2)
+    #pp = np.ndarray.round(predicted_power, 2)
+    #pp2 = np.around(predicted_power, 2)
+    #pp = predicted_power[0]
     b = predicted_power.tolist()
-    b1 = pp.tolist()
-    b2 = pp2.tolist()
+    #b1 = pp.tolist()
+    #b2 = pp2.tolist()
     
     
     
     print("Predicted power: ", predicted_power)
     print("Predicted power: ", type(b))
     print("Predicted power list: ", b)
-    print("Predicted power list: ", pp)
-    print("Predicted power list: ", pp2)
-    print("Predicted power type: ", type(pp))
-    print("Predicted power type: ", type(pp2))
-    print("Predicted power list: ", b1)
-    print("Predicted power list: ", b2)
+    #print("Predicted power list: ", pp)
+    #print("Predicted power list: ", pp2)
+    #print("Predicted power type: ", type(pp))
+    #print("Predicted power type: ", type(pp2))
+    #print("Predicted power list: ", b1)
+    #print("Predicted power list: ", b2)
     return jsonify(result=b)
+    #return str(pp)
 
 
 #background process happening without any refreshing

@@ -10,7 +10,8 @@
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-        <title>Hello, world!</title>
+        <title>prediction!</title>
+        <h1>Wind power prediction model</h1>
     </head>
     <body>
       <form>
@@ -24,11 +25,13 @@
             </div>
 
             <!-- Creates container with Output field -->
+
+
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" >Predicted power</span>
+                    <span class="input-group-text" style="float:right" span id="result1" >?</span> <span class="input-group-text">Predicted power:  </span>
                 </div>
-                <input type="number" id="result" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" readonly>
+                <!-- <input type="number" id="result" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" readonly> -->
                 
             </div>
             <!-- <input type="number" id="output_test" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" readonly>
@@ -52,8 +55,10 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type=text/javascript>
+
       $(function() {
-        $("a#calculate").bind('click', function() {
+        // on-click takes the input value, passes it to python function and returns results 
+        $("#calculate_power").bind('click', function() {
           $.getJSON("/prediction", {
             a: $('input[name="a"]').val(),
           }, function(data) {
@@ -62,25 +67,13 @@
           return false;
         });
       });
-
-      $(function() {
-        $("#calculate_power").bind('click', function() {
-          $.getJSON("/prediction", {
-            a: $('input[name="a"]').val(),
-          }, function(data) {
-            $("#result").val(data.value);
-          });
-          return false;
-        });
-      });
       
     </script>
 
-    <h1>jQuery Example</h1>
+   <!-- <h1>jQuery Example</h1>
     <p><input type="number" size=5 name="a"> 
-       <!-- <input type=text size=5 name=b> = -->
        <input type="number" name="power" id="resultid">
        <span id="result1">?</span>
-    <p><a href=# id=calculate>calculate server side</a>
+    <p><a href=# id=calculate>calculate server side</a> -->
     </body>
 </html>

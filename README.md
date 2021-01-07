@@ -13,10 +13,10 @@ The Github repository contains the following files:
    2. powerproduction.csv - This is the power production dataset used for analysis.
    3. ReadMe.md - This is a Markdown file, containing explanation what is saved in the Github repository and instructions how to run Jupyter notebook.
    4. .gitignore - This file tells git which files (or patterns) should be ignored. In our case it's Python.
-   5. webpage - folder, that contains:
-            python script that runs a webservice
-            dockerfile - to build and run the we service in a container
-            index - html file
+   5. app.py - python script that runs a webservice
+   6. templates - contains index.html file
+   7. dockerfile - to build and run the we service in a container
+   8. requirements.txt 
 
    #1 How to download this repository:
 
@@ -35,5 +35,4 @@ The Github repository contains the following files:
     
     #3 How to run the FLASK:
         1. in the command prompt type: set FLASK_APP=app.py
-        2. 
-python -m flask run
+        2. python -m flask run
